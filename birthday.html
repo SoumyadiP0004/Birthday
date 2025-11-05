@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎉 Happy Birthday Manisha 🎉</title>
+    <style>
+        /* --- General Setup & Background --- */
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #fceabb, #f8b500);
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* --- Card Styling --- */
+        #main-card {
+            background: #fff9c4;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 0 25px #ff80ab, 0 0 50px #ff4081;
+            border: 4px dashed #ff6f61;
+            transform: rotate(-1.5deg);
+            z-index: 10;
+            animation: fadeIn 2s ease-in-out;
+            max-width: 600px;
+            position: relative;
+        }
+
+        #main-card h1 {
+            font-size: 3rem;
+            color: #ff4081;
+            text-shadow: 3px 3px #ffe082;
+            animation: wiggle 1s infinite;
+        }
+
+        #main-card p {
+            font-size: 1.3rem;
+            color: #333;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1) rotate(-1.5deg); }
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background: #ff4081;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff80ab;
+            transform: scale(1.1);
+        }
+
+        /* --- Hidden Surprise Section Styling --- */
+        #surprise-message {
+            display: none; /* Initially hidden */
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            max-width: 700px;
+            z-index: 10;
+            color: #624fa6;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 1s ease-in-out;
+        }
+
+        #surprise-message.visible {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #surprise-message h2 {
+            font-size: 3rem;
+            color: #ffcc00;
+            text-shadow: 2px 2px #624fa6;
+        }
+
+        #surprise-message p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #ff99ff;
+            text-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-card">
+        <h1>🎂 Happy Birthday Liliput 🎂</h1>
+        <p>Dear ছোটলোক, may your দিন
+ be full of ভালুবাসা, fun, and endless দাঁত কেলানি 🌸💖</p>
+        <button onclick="showSurprise()">Click for Special Message! 💌</button>
+    </div>
+
+    <div id="surprise-message" class="message-box">
+        <h2>🫨🤬 বুড়ি তো হয়ে গেছিস। এবার তো বিয়েটা কর ।✨</h2>
+        <p>২১ বছর হয়ে গেল। তোর দ্বারা আর ছেলে পটবেনা। বাবাকে বল একটি মাতাল দেখে বিয়ে করিয়ে দিতে।</p>
+        <p><strong>যাক গে সেসব ছাড়। তুই তাড়াতাড়ি cash ready কর। ভয়ানক একটা পার্টি দে।</strong></p>
+        <p class="signature">-ভগবান 🙏</p>
+    </div>
+
+    <audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" loop></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script>
+        // --- Surprise Reveal Function ---
+        function showSurprise() {
+            // 1. Play music
+            const audio = document.getElementById("music");
+            audio.play();
+
+            // 2. Initial confetti blast & continuous fireworks
+            confetti({ particleCount: 200, spread: 120, origin: { y: 0.7 } });
+            launchFireworks(); 
+
+            // 3. Show the hidden message and hide the main card
+            document.getElementById('surprise-message').classList.add('visible');
+            document.getElementById('main-card').style.display = 'none';
+
+            // 4. Scroll to the new message area
+            setTimeout(() => {
+                document.getElementById('surprise-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 500);
+        }
+
+        // --- Fireworks effect ---
+        function launchFireworks() {
+            const duration = 5 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 }
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 }
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+    </script>
+</body>
+</html>
